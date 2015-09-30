@@ -7,14 +7,20 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
-
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <receiver android:name="com.example.gitdemo.MyBroadCastReceiver">
+            <intent-filter >
+                <action android:name="com.example.screentest.MyBroadCast"/>
+            </intent-filter>
+        </receiver>
+        
         <activity
-            android:name="com.example.gitdemo.MainActivity"
+            android:name="com.example.gitdemo.LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.gitdemo.MainActivity"></activity>
     </application>
 
 </manifest>
