@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+       <Button 
+        android:onClick="manage"
+        android:id="@+id/btn_create_database"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="create database"/>
+    <Button 
+        android:onClick="manage"
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add"/>
+    <Button 
+        android:onClick="manage"
+        android:id="@+id/btn_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="modify"/>
+    <Button 
+        android:onClick="manage"
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="delete"/>
+    
+    <Button 
+        android:onClick="manage"
+        android:id="@+id/btn_delete_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="deleteAll"/>
+    <Button 
+        android:onClick="manage"
+        android:id="@+id/btn_replace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="replacedata"/>
+    <Button 
+        android:onClick="manage"
+        android:id="@+id/btn_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="search"/>
+    <EditText
+        android:id="@+id/et_show_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

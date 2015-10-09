@@ -1,14 +1,28 @@
 package com.example.gitdemo;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.gitdemo.callback.CEO;
 import com.example.gitdemo.callback.Charger;
@@ -21,18 +35,104 @@ import com.example.gitdemo.controller.MyLoginBroadCastReceiver;
 public class MainActivity extends Activity {
 	private LocalBroadcastManager manager;
 	private MyLoginBroadCastReceiver receiver;
+	private EditText et_input;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		init();
 		
 		callBackTest();
 		
 		testBroadCast();
 		
 		forceOffLine();
+		
 	}
 	
+	private void init() {
+		et_input = (EditText) findViewById(R.id.et_input);
+		
+		String data = readSavedData();
+		if(!TextUtils.isEmpty(data)){
+			et_input.setText(data);
+			et_input.setSelection(data.length());
+		}
+		
+	}
+
+	private String readSavedData() {
+		FileInputStream inputStream = null;
+		BufferedReader reader = null;
+		
+		try {
+			inputStream = this.openFileInput("login_data");
+			reader = new BufferedReader(new InputStreamReader(inputStream));
+			String line ;
+			StringBuffer buffer = new StringBuffer();
+			while((line = reader.readLine())!=null){
+				buffer.append(line);
+			}
+			return buffer.toString();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			if(reader != null){
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(inputStream !=null){
+				try {
+					inputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+	}
+
+	private void saveData(String data) {
+		FileOutputStream output = null;
+		BufferedWriter bw = null ;
+		try {
+			output = this.openFileOutput("login_data", Context.MODE_PRIVATE);
+			
+			bw = new BufferedWriter(new OutputStreamWriter(output));
+			
+			bw.write(data);
+			bw.flush();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			if(bw != null){
+				try {
+					bw.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(output != null){
+				try {
+					output.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 	private void forceOffLine(){
 		manager = LocalBroadcastManager.getInstance(MainActivity.this);
 		IntentFilter filter = new IntentFilter("com.example.gitdemo.LoginBroadCast");
@@ -77,6 +177,25 @@ public class MainActivity extends Activity {
 		new Charger(worker);
 	}
 
+	
+	public void done(View v){
+		switch (v.getId()) {
+		case R.id.btn_save_data:
+			String input = et_input.getText().toString();
+			if(!TextUtils.isEmpty(input)){
+				saveData(input);
+			}else{
+				saveData("this is only a data save test");
+			}
+			break;
+		case R.id.btn_test_database:
+			startActivity(new Intent(MainActivity.this,DataBaseActivity.class));	
+
+		default:
+			break;
+		}
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

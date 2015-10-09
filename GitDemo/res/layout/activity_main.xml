@@ -13,5 +13,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="强制下线" />
+    
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btn_save_data"
+        android:layout_toRightOf="@id/btn_force_offline" />
+    
+    <Button
+        android:onClick="done"
+        android:id="@+id/btn_save_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_force_offline"
+        android:text="保存数据" />
+    
+    <Button
+        android:onClick="done"
+        android:id="@+id/btn_test_database"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_save_data"
+        android:text="test数据库" />
 
 </RelativeLayout>
