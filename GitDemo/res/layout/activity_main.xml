@@ -36,5 +36,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_save_data"
         android:text="test数据库" />
+    
+    <Button
+        android:onClick="done"
+        android:id="@+id/btn_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_test_database"
+        android:text="notification" />
+
+    <Button
+        android:onClick="done"
+        android:id="@+id/btn_notify_anthor_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_notification"
+        android:layout_alignBottom="@+id/btn_notification"
+        android:layout_marginLeft="17dp"
+        android:layout_toRightOf="@+id/btn_notification"
+        android:text="点击通知打开新的Activity" />
 
 </RelativeLayout>
