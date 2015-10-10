@@ -103,4 +103,13 @@
         android:layout_below="@+id/btn_takephoto"
         android:text="play video" />
 
+    <Button
+        android:onClick="done"
+        android:id="@+id/btn_change_ui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_sound"
+        android:layout_below="@+id/btn_takephoto"
+        android:text="change_ui" />
+
 </RelativeLayout>

@@ -228,6 +228,9 @@ public class MainActivity extends Activity {
 		case R.id.btn_video:
 			startActivity(new Intent(MainActivity.this,PlayVideoActivity.class));
 			break;
+		case R.id.btn_change_ui:
+			startActivity(new Intent(MainActivity.this,UpdataUIActivity.class));
+			break;
 		default:
 			break;
 		}

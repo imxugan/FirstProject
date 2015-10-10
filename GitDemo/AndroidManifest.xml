@@ -43,6 +43,7 @@
         <activity android:name="com.example.gitdemo.TakePhotoActivity"></activity>
         <activity android:name="com.example.gitdemo.PlayMusicActivity"></activity>
         <activity android:name="com.example.gitdemo.PlayVideoActivity"></activity>
+        <activity android:name="com.example.gitdemo.UpdataUIActivity"></activity>
     </application>
 
 </manifest>

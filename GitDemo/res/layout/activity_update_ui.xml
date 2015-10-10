@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:onClick="manage"
+        android:id="@+id/btn_change_ui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="handler change ui" />
+
+
+
+    <Button
+        android:onClick="manage"
+        android:id="@+id/btn_asytask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="asytask change ui" />
+    
+     <Button
+        android:onClick="manage"
+        android:id="@+id/btn_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="download" />
+    
+        <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="helloworld"/>
+
+</LinearLayout>
