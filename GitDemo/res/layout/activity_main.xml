@@ -56,4 +56,32 @@
         android:layout_toRightOf="@+id/btn_notification"
         android:text="点击通知打开新的Activity" />
 
+    <Button
+        android:onClick="done"
+        android:id="@+id/btn_sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_force_offline"
+        android:layout_alignBottom="@+id/btn_force_offline"
+        android:layout_toRightOf="@+id/btn_notification"
+        android:text="短信相关的操作" />
+
+    <Button
+        android:onClick="done"
+        android:id="@+id/btn_send_sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_notification"
+        android:layout_below="@+id/btn_notify_anthor_activity"
+        android:text="发送短信" />
+
+    <Button
+        android:onClick="done"
+        android:id="@+id/btn_takephoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_send_sms"
+        android:layout_below="@+id/btn_send_sms"
+        android:text="调用相机拍照" />
+
 </RelativeLayout>

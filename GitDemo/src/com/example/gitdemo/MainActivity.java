@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.content.LocalBroadcastManager;
+import android.telephony.SmsManager;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.View;
@@ -35,6 +36,8 @@ import com.example.gitdemo.callback.Manager;
 import com.example.gitdemo.callback.MyLocalBroadCastReceiver;
 import com.example.gitdemo.callback.Worker;
 import com.example.gitdemo.controller.MyLoginBroadCastReceiver;
+import com.example.gitdemo.controller.MySmsBroadCastReceiver;
+import com.example.gitdemo.controller.SendSmsStatsReceiver;
 
 public class MainActivity extends Activity {
 	private LocalBroadcastManager manager;
@@ -42,6 +45,8 @@ public class MainActivity extends Activity {
 	private EditText et_input;
 	private Builder mBuilder;
 	private NotificationManager service;
+	private MySmsBroadCastReceiver smsReceiver;
+	private SendSmsStatsReceiver smsStatsReceiver;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -72,24 +77,6 @@ public class MainActivity extends Activity {
 		
 	}
 	
-	/** 初始化通知栏 */
-	private void initNotify(){
-		mBuilder = new NotificationCompat.Builder(this);
-		mBuilder.setContentTitle("测试标题")
-				.setContentText("测试内容")
-//				.setContentIntent(getDefalutIntent(Notification.FLAG_AUTO_CANCEL))
-//				.setNumber(number)//显示数量
-				.setTicker("测试通知来啦")//通知首次出现在通知栏，带上升动画效果的
-				.setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示
-				.setPriority(Notification.PRIORITY_DEFAULT)//设置该通知优先级
-				.setAutoCancel(true)
-				.setOngoing(false)//ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
-				.setDefaults(Notification.DEFAULT_VIBRATE)//向通知添加声音、闪灯和振动效果的最简单、最一致的方式是使用当前的用户默认设置，使用defaults属性，可以组合：
-				//Notification.DEFAULT_ALL  Notification.DEFAULT_SOUND 添加声音 // requires VIBRATE permission
-				.setSmallIcon(R.drawable.ic_launcher);
-		service.notify(1, mBuilder.build());
-		service.cancel(1);//添加这句代码，通知会在状态栏自动消失
-	}
 
 	private String readSavedData() {
 		FileInputStream inputStream = null;
@@ -225,9 +212,52 @@ public class MainActivity extends Activity {
 			break;
 		case R.id.btn_notify_anthor_activity:
 			notifyActivity();
+		case R.id.btn_sms:
+			receivceSms();
+		case R.id.btn_send_sms:
+			sendSms();
+		case R.id.btn_takephoto:
+			startActivity(new Intent(MainActivity.this,TakePhotoActivity.class));
 		default:
 			break;
 		}
+	}
+	
+	private void sendSms() {
+		smsStatsReceiver = new SendSmsStatsReceiver();
+		IntentFilter filter = new IntentFilter("SENT_SMS_ACTION");
+		registerReceiver(smsStatsReceiver, filter);
+		SmsManager smsManager = SmsManager.getDefault();
+		String destinationAddress = "123456";
+		Intent intent = new Intent("SENT_SMS_ACTION");
+		PendingIntent sentIntent = PendingIntent.getBroadcast(MainActivity.this, 100, intent,  0);
+		smsManager.sendTextMessage(destinationAddress, null, "android 书哪家强", sentIntent, null);
+		
+	}
+
+	private void receivceSms() {
+		smsReceiver = new MySmsBroadCastReceiver();
+		IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+		registerReceiver(smsReceiver, filter);
+	}
+	
+	/** 初始化通知栏 */
+	private void initNotify(){
+		mBuilder = new NotificationCompat.Builder(this);
+		mBuilder.setContentTitle("测试标题")
+				.setContentText("测试内容")
+//				.setContentIntent(getDefalutIntent(Notification.FLAG_AUTO_CANCEL))
+//				.setNumber(number)//显示数量
+				.setTicker("测试通知来啦")//通知首次出现在通知栏，带上升动画效果的
+				.setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示
+				.setPriority(Notification.PRIORITY_DEFAULT)//设置该通知优先级
+				.setAutoCancel(true)
+				.setOngoing(false)//ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
+				.setDefaults(Notification.DEFAULT_VIBRATE)//向通知添加声音、闪灯和振动效果的最简单、最一致的方式是使用当前的用户默认设置，使用defaults属性，可以组合：
+				//Notification.DEFAULT_ALL  Notification.DEFAULT_SOUND 添加声音 // requires VIBRATE permission
+				.setSmallIcon(R.drawable.ic_launcher);
+		service.notify(1, mBuilder.build());
+//		service.cancel(1);//添加这句代码，通知会在状态栏自动消失
 	}
 	
 	/** 初始化通知栏 */
@@ -240,7 +270,7 @@ public class MainActivity extends Activity {
 //				.setNumber(number)//显示数量
 				.setTicker("测试通知来啦")//通知首次出现在通知栏，带上升动画效果的
 				.setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示
-				.setPriority(Notification.PRIORITY_DEFAULT)//设置该通知优先级
+				.setPriority(100)//设置该通知优先级
 				.setAutoCancel(true)//设置??????
 				.setOngoing(false)//ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
 				.setDefaults(Notification.DEFAULT_VIBRATE|Notification.DEFAULT_LIGHTS)//向通知添加声音、闪灯和振动效果的最简单、最一致的方式是使用当前的用户默认设置，使用defaults属性，可以组合：
@@ -265,16 +295,16 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 	
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		manager.unregisterReceiver(receiver);
+		unregisterReceiver(smsReceiver);
+		unregisterReceiver(smsStatsReceiver);
 	}
 
 }

@@ -10,6 +10,12 @@
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 <!-- 闪光灯权限 -->
 <uses-permission android:name="android.permission.FLASHLIGHT"/>
+<!-- 接收短信权限 -->
+<uses-permission android:name="android.permission.RECEIVE_SMS"/>
+<!-- 发送短信权限 -->
+<uses-permission android:name="android.permission.SEND_SMS"/>
+<!-- 获取打开相机的权限 -->
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -34,6 +40,7 @@
         <activity android:name="com.example.gitdemo.MainActivity"></activity>
         <activity android:name="com.example.gitdemo.DataBaseActivity"></activity>
         <activity android:name="com.example.gitdemo.NotificationActivity"></activity>
+        <activity android:name="com.example.gitdemo.TakePhotoActivity"></activity>
     </application>
 
 </manifest>
