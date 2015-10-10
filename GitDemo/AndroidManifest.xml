@@ -44,6 +44,10 @@
         <activity android:name="com.example.gitdemo.PlayMusicActivity"></activity>
         <activity android:name="com.example.gitdemo.PlayVideoActivity"></activity>
         <activity android:name="com.example.gitdemo.UpdataUIActivity"></activity>
+        <activity android:name="com.example.gitdemo.TestServiceActivity"></activity>
+        
+        <service android:name="com.example.gitdemo.service.MyService"></service>
+        <service android:name="com.example.gitdemo.service.MyBindService"></service>
     </application>
 
 </manifest>

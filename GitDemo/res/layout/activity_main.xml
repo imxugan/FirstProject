@@ -112,4 +112,13 @@
         android:layout_below="@+id/btn_takephoto"
         android:text="change_ui" />
 
+    <Button
+        android:onClick="done"
+        android:id="@+id/btn_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_video"
+        android:layout_below="@+id/btn_video"
+        android:text="test service" />
+
 </RelativeLayout>
