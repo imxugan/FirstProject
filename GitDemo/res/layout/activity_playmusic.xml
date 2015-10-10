@@ -6,20 +6,24 @@
 
     <Button
         android:onClick="manage"
-        android:id="@+id/btn_choosephoto"
+        android:id="@+id/btn_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="choosephoto" />
+        android:text="play" />
 
        <Button 
         android:onClick="manage"
-        android:id="@+id/btn_takephoto"
+        android:id="@+id/btn_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="takephoto"/>
-    <ImageView
-        android:id="@+id/iv_show_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:text="stop"/>
+       
+       <Button 
+        android:onClick="manage"
+        android:id="@+id/btn_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pause"/>
+    
 
 </LinearLayout>

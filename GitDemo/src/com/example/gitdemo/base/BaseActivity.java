@@ -10,6 +10,7 @@ public abstract class BaseActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ActivityController.addActivity(this);
+		initContentView(savedInstanceState);
 	}
 	
 	@Override
@@ -18,5 +19,7 @@ public abstract class BaseActivity extends Activity{
 		ActivityController.removeActivity(this);
 	}
 	
-	public abstract void initView();
+	
+	// 初始化UI，setContentView等
+    protected abstract void initContentView(Bundle savedInstanceState);
 }

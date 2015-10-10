@@ -212,12 +212,22 @@ public class MainActivity extends Activity {
 			break;
 		case R.id.btn_notify_anthor_activity:
 			notifyActivity();
+			break;
 		case R.id.btn_sms:
 			receivceSms();
+			break;
 		case R.id.btn_send_sms:
 			sendSms();
+			break;
 		case R.id.btn_takephoto:
 			startActivity(new Intent(MainActivity.this,TakePhotoActivity.class));
+			break;
+		case R.id.btn_sound:
+			startActivity(new Intent(MainActivity.this,PlayMusicActivity.class));
+			break;
+		case R.id.btn_video:
+			startActivity(new Intent(MainActivity.this,PlayVideoActivity.class));
+			break;
 		default:
 			break;
 		}
