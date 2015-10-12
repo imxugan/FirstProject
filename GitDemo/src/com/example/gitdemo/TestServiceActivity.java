@@ -14,6 +14,7 @@ import com.example.gitdemo.service.MyBindService;
 import com.example.gitdemo.service.MyForegroundService;
 import com.example.gitdemo.service.MyIntentService;
 import com.example.gitdemo.service.MyBindService.MyBinder;
+import com.example.gitdemo.service.MyLongRunningService;
 import com.example.gitdemo.service.MyService;
 
 public class TestServiceActivity extends BaseActivity{
@@ -24,6 +25,7 @@ public class TestServiceActivity extends BaseActivity{
 	public boolean isServiceConnected;
 	private Intent foregroundService;
 	private Intent intentService;
+	private Intent myLongRunningService;
 
 	@Override
 	protected void initContentView(Bundle savedInstanceState) {
@@ -62,6 +64,11 @@ public class TestServiceActivity extends BaseActivity{
 			intentService = new Intent(TestServiceActivity.this,MyIntentService.class);
 			startService(intentService);
 			Log.i("ii", "TestServiceActivity="+Thread.currentThread().getId());
+			break;
+			
+		case R.id.btn_practice:
+			myLongRunningService = new Intent(TestServiceActivity.this,MyLongRunningService.class);
+			startService(myLongRunningService);
 			break;
 		default:
 			break;
@@ -105,6 +112,10 @@ public class TestServiceActivity extends BaseActivity{
 		
 		if(intentService != null){
 			stopService(intentService);
+		}
+		
+		if(myLongRunningService != null){
+			stopService(myLongRunningService);
 		}
 	}
 

@@ -46,4 +46,11 @@
            android:layout_height="wrap_content"
            android:text="intent service" />
 
+       <Button
+           android:onClick="manage"
+           android:id="@+id/btn_practice"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="长期在后台执行定时任务的服务" />
+
 </LinearLayout>
