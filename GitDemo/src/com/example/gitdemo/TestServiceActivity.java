@@ -1,5 +1,6 @@
 package com.example.gitdemo;
 
+import android.app.IntentService;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -10,6 +11,8 @@ import android.view.View;
 
 import com.example.gitdemo.base.BaseActivity;
 import com.example.gitdemo.service.MyBindService;
+import com.example.gitdemo.service.MyForegroundService;
+import com.example.gitdemo.service.MyIntentService;
 import com.example.gitdemo.service.MyBindService.MyBinder;
 import com.example.gitdemo.service.MyService;
 
@@ -17,6 +20,10 @@ public class TestServiceActivity extends BaseActivity{
 
 	private Intent service;
 	private MyServiceConnection conn;
+	private MyBindService.MyBinder binder;
+	public boolean isServiceConnected;
+	private Intent foregroundService;
+	private Intent intentService;
 
 	@Override
 	protected void initContentView(Bundle savedInstanceState) {
@@ -38,11 +45,23 @@ public class TestServiceActivity extends BaseActivity{
 			bindService(service, conn, BIND_AUTO_CREATE);
 			break;
 		case R.id.btn_unbind_service:
-			Log.i("ii", "conn======"+conn);
+//			Log.i("ii", "conn======"+conn);
+//			Log.i("ii", "service======"+service);
+//			Log.i("ii", "binder======"+binder);
 			//多次解绑服务失败，如何破？？？
-			if(conn != null){
+			if(isServiceConnected){
 				unbindService(conn);
+				isServiceConnected = false;
 			}
+			break;
+		case R.id.btn_create_froeground_service:
+			foregroundService = new Intent(TestServiceActivity.this,MyForegroundService.class);
+		    startService(foregroundService);
+			break;
+		case R.id.btn_intent_service:
+			intentService = new Intent(TestServiceActivity.this,MyIntentService.class);
+			startService(intentService);
+			Log.i("ii", "TestServiceActivity="+Thread.currentThread().getId());
 			break;
 		default:
 			break;
@@ -51,12 +70,11 @@ public class TestServiceActivity extends BaseActivity{
 	
 	private class MyServiceConnection implements ServiceConnection{
 
-		private MyBindService.MyBinder binder;
-
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			binder = (MyBinder) service;
 			binder.show();
+			isServiceConnected = true;
 		}
 
 		@Override
@@ -69,9 +87,25 @@ public class TestServiceActivity extends BaseActivity{
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		stopService(service);
+		Log.i("ii", "TestServiceActivity service="+service);
+		Log.i("ii", "TestServiceActivity foregroundService="+foregroundService);
+		Log.i("ii", "TestServiceActivity intentService="+intentService);
+		if(service != null){
+			stopService(service);
+		}
 		
-		unbindService(conn);
+		if(foregroundService != null){
+			stopService(foregroundService);
+		}
+		
+		if(isServiceConnected){
+			unbindService(conn);
+			isServiceConnected = false;
+		}
+		
+		if(intentService != null){
+			stopService(intentService);
+		}
 	}
 
 }

@@ -23,6 +23,7 @@ import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.SmsManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -235,7 +236,6 @@ public class MainActivity extends Activity {
 		case R.id.btn_service:
 			startActivity(new Intent(MainActivity.this,TestServiceActivity.class));
 			break;
-			
 		default:
 			break;
 		}
@@ -320,9 +320,19 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		Log.i("ii", "MainActivity	receiver="+receiver);
+		Log.i("ii", "MainActivity	smsReceiver="+smsReceiver);
+		Log.i("ii", "MainActivity	smsStatsReceiver="+smsStatsReceiver);
+		
 		manager.unregisterReceiver(receiver);
-		unregisterReceiver(smsReceiver);
-		unregisterReceiver(smsStatsReceiver);
+		if(smsReceiver != null){
+			unregisterReceiver(smsReceiver);
+		}
+		
+		if(smsStatsReceiver != null){
+			unregisterReceiver(smsStatsReceiver);
+		}
+		
 	}
 
 }

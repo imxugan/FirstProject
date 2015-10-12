@@ -48,6 +48,8 @@
         
         <service android:name="com.example.gitdemo.service.MyService"></service>
         <service android:name="com.example.gitdemo.service.MyBindService"></service>
+        <service android:name="com.example.gitdemo.service.MyForegroundService"></service>
+        <service android:name="com.example.gitdemo.service.MyIntentService"></service>
     </application>
 
 </manifest>

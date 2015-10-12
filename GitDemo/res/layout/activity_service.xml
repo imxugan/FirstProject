@@ -32,4 +32,18 @@
            android:layout_height="wrap_content"
            android:text="unbind_service" />
 
+       <Button
+        android:onClick="manage"
+        android:id="@+id/btn_create_froeground_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="create froeground service" />
+
+       <Button
+           android:onClick="manage"
+           android:id="@+id/btn_intent_service"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="intent service" />
+
 </LinearLayout>
