@@ -16,6 +16,8 @@
 <uses-permission android:name="android.permission.SEND_SMS"/>
 <!-- 获取打开相机的权限 -->
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<!-- 联网权限 -->
+<uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -47,6 +49,12 @@
         <activity android:name="com.example.gitdemo.PlayVideoActivity"></activity>
         <activity android:name="com.example.gitdemo.UpdataUIActivity"></activity>
         <activity android:name="com.example.gitdemo.TestServiceActivity"></activity>
+        <activity android:name="com.example.gitdemo.WebViewTestActivity"></activity>
+        <activity android:name="com.example.gitdemo.HttpTestActivity"></activity>
+        
+        
+        
+        
         
         <service android:name="com.example.gitdemo.service.MyService"></service>
         <service android:name="com.example.gitdemo.service.MyBindService"></service>

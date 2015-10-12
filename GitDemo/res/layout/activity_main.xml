@@ -121,5 +121,23 @@
         android:layout_below="@+id/btn_video"
         android:text="test service" />
 
+    <Button
+        android:onClick="done"
+        android:id="@+id/btn_webview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_service"
+        android:layout_alignBottom="@+id/btn_service"
+        android:layout_alignLeft="@+id/btn_notify_anthor_activity"
+        android:text="test webview" />
+
+    <Button
+        android:onClick="done"
+        android:id="@+id/btn_http_connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_service"
+        android:layout_below="@+id/btn_service"
+        android:text="test http connect" />
 
 </RelativeLayout>

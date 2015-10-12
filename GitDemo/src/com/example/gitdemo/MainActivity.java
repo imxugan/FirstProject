@@ -236,6 +236,12 @@ public class MainActivity extends Activity {
 		case R.id.btn_service:
 			startActivity(new Intent(MainActivity.this,TestServiceActivity.class));
 			break;
+		case R.id.btn_webview:
+			startActivity(new Intent(MainActivity.this,WebViewTestActivity.class));
+			break;
+		case R.id.btn_http_connect:
+			startActivity(new Intent(MainActivity.this,HttpTestActivity.class));
+			break;
 		default:
 			break;
 		}
