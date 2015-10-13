@@ -14,14 +14,22 @@
        <Button 
         android:onClick="manage"
         android:id="@+id/btn_sax"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="sax"/>
     
  	<Button 
         android:onClick="manage"
         android:id="@+id/btn_json"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="json"/>
+
+ 	<Button
+ 	    android:onClick="manage"
+ 	    android:id="@+id/btn_gson"
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="wrap_content"
+ 	    android:text="gson" />
+
 </LinearLayout>

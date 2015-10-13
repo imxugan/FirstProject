@@ -11,6 +11,9 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -28,6 +31,8 @@ import android.view.View;
 
 import com.example.gitdemo.base.BaseActivity;
 import com.example.gitdemo.bean.Person;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class ParseDataActivity extends BaseActivity{
 
@@ -51,14 +56,74 @@ public class ParseDataActivity extends BaseActivity{
 			parseXmlDataBySax();
 			break;
 		case R.id.btn_json:
-			
+			parseJsonDataFromAssets();
 			break;
-
+		case R.id.btn_gson:
+			parseJsonDataByGson();
+			break;
 		default:
 			break;
 		}
 	}
 	
+	private void parseJsonDataByGson() {
+		String json = getJsonData();
+		parseJsonWithGson(json);
+	}
+
+	private void parseJsonWithGson(String json) {
+		Gson gson = new Gson();
+		//Person p = gson.fromJson(json, Person.class);
+		List<Person> peoples = gson.fromJson(json, new TypeToken<List<Person>>() {}.getType());
+		for (Person person : peoples) {
+			Log.e("ii", "采用gson方式解析-----"+person.id+"---"+person.name+"---"+person.age);
+		}
+	}
+
+	private void parseJsonDataFromAssets() {
+		String json = getJsonData();
+//		Log.i("ii", "json="+json);
+		parseJsonWithJsonObject(json);
+	}
+
+	private void parseJsonWithJsonObject(String json) {
+		try {
+			JSONArray array = new JSONArray(json);
+			Log.i("ii", "array.length()="+array.length());
+			JSONObject jsonObject = null;
+			String id ;
+			String name;
+			String age ;
+			for (int i = 0; i < array.length(); i++) {
+				jsonObject = array.getJSONObject(i);
+				id = (String) jsonObject.get("id");
+				name = (String) jsonObject.get("name");
+				age = jsonObject.getString("age");
+				Log.e("ii", id+"---"+name+"---"+age);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	private String getJsonData() {
+		try {
+			InputStream stream = getAssets().open("person_json.txt");//不要忘记了后缀.txt 否则会报错 InputStream stream = getAssets().open("person_json");
+			BufferedReader re = new BufferedReader(new InputStreamReader(stream));
+			String line = null;
+			StringBuilder sb = new StringBuilder();
+			while((line = re.readLine())!=null){
+				sb.append(line);
+			}
+			return sb.toString();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	private void parseXmlDataBySax() {
 		try {
 			SAXParserFactory factory = SAXParserFactory.newInstance();
