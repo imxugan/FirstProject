@@ -39,6 +39,7 @@ import com.example.gitdemo.callback.Worker;
 import com.example.gitdemo.controller.MyLoginBroadCastReceiver;
 import com.example.gitdemo.controller.MySmsBroadCastReceiver;
 import com.example.gitdemo.controller.SendSmsStatsReceiver;
+import com.example.gitdemo.util.LogUtil;
 
 public class MainActivity extends Activity {
 	private LocalBroadcastManager manager;
@@ -61,7 +62,7 @@ public class MainActivity extends Activity {
 		
 		forceOffLine();
 		
-		
+		LogUtil.i("ii", "test LogUtil");
 		
 	}
 	
