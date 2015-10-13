@@ -32,4 +32,11 @@
  	    android:layout_height="wrap_content"
  	    android:text="gson" />
 
+ 	<Button
+ 	    android:onClick="manage"
+ 	    android:id="@+id/btn_test_myHttpUtil"
+ 	    android:layout_width="wrap_content"
+ 	    android:layout_height="wrap_content"
+ 	    android:text="测试自己写的联网框架" />
+
 </LinearLayout>

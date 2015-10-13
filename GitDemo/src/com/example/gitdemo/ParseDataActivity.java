@@ -31,6 +31,8 @@ import android.view.View;
 
 import com.example.gitdemo.base.BaseActivity;
 import com.example.gitdemo.bean.Person;
+import com.example.gitdemo.callback.MyGetResultListener;
+import com.example.gitdemo.util.MyHttpUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -61,9 +63,27 @@ public class ParseDataActivity extends BaseActivity{
 		case R.id.btn_gson:
 			parseJsonDataByGson();
 			break;
+		case R.id.btn_test_myHttpUtil:
+			testMyHttpUtils();
+			break;
 		default:
 			break;
 		}
+	}
+	
+	private void testMyHttpUtils(){
+		//建议网络连接不要使用HttpURLConnection，HttpClient，因为这两种网络连接不自带线程，在使用是需要创建线程调用。
+		MyHttpUtil.httpRequest("http://www.163.com", new MyGetResultListener() {
+					@Override
+					public void onFinsh(String string) {
+						Log.i("ii", string);
+					}
+					
+					@Override
+					public void OnError(Exception e) {
+						
+					}
+				});
 	}
 	
 	private void parseJsonDataByGson() {
@@ -135,13 +155,10 @@ public class ParseDataActivity extends BaseActivity{
 			String xmlData = getXmlData();
 			xmlReader.parse(new InputSource(new StringReader(xmlData)));
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -182,19 +199,16 @@ public class ParseDataActivity extends BaseActivity{
 		@Override
 		public void startDocument() throws SAXException {
 			super.startDocument();
-			
 			Log.e("ii", "startDocument=");
 			name = new StringBuilder();
 			sex = new StringBuilder();
 			age = new StringBuilder();
 			personss = new ArrayList<Person>();
-			
 		}
 
 		@Override
 		public void startElement(String uri, String localName, String qName,
 				Attributes attributes) throws SAXException {
-			// TODO Auto-generated method stub
 			super.startElement(uri, localName, qName, attributes);
 			nodeName = localName;
 //			Log.e("ii", qName+"----startElement="+localName);

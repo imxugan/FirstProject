@@ -72,6 +72,7 @@ public class MainActivity extends Activity {
 		if(!TextUtils.isEmpty(data)){
 			et_input.setText(data);
 			et_input.setSelection(data.length());
+			et_input.setFocusable(false);
 		}
 		
 		service = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -244,6 +245,9 @@ public class MainActivity extends Activity {
 			break;
 		case R.id.btn_parse_data:
 			startActivity(new Intent(MainActivity.this,ParseDataActivity.class));
+			break;
+		case R.id.btn_transmit_object:
+			startActivity(new Intent(MainActivity.this,TransmitObjectActivity.class));
 			break;
 		default:
 			break;
