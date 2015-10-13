@@ -242,6 +242,9 @@ public class MainActivity extends Activity {
 		case R.id.btn_http_connect:
 			startActivity(new Intent(MainActivity.this,HttpTestActivity.class));
 			break;
+		case R.id.btn_parse_data:
+			startActivity(new Intent(MainActivity.this,ParseDataActivity.class));
+			break;
 		default:
 			break;
 		}

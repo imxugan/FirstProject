@@ -51,6 +51,7 @@
         <activity android:name="com.example.gitdemo.TestServiceActivity"></activity>
         <activity android:name="com.example.gitdemo.WebViewTestActivity"></activity>
         <activity android:name="com.example.gitdemo.HttpTestActivity"></activity>
+        <activity android:name="com.example.gitdemo.ParseDataActivity"></activity>
         
         
         

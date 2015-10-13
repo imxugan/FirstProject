@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<persons>
+    <person id="1">
+    	<sex>man</sex>
+    	<age>19</age>
+    	<name>xiaoming</name>
+    </person>
+
+	<person id="2">
+    	<sex>women</sex>
+    	<age>23</age>
+    	<name>lily</name>
+    </person>
+    
+	<person >
+    	<sex>1</sex>
+    	<age>a</age>
+    	<name> </name>
+    </person>
+	
+	<person >
+    	<sex></sex>
+    	<age></age>
+    	<name> </name>
+    </person>
+
+</persons>
