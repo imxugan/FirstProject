@@ -105,7 +105,7 @@ public class LoginActivity extends BaseActivity{
 				editor.putString("user_name", user_name);
 				editor.putString("psw", psw);
 				editor.commit();
-				Log.i("ii", "user_name="+user_name);
+//				Log.i("ii", "user_name="+user_name);
 				if(TextUtils.isEmpty(user_name) || TextUtils.isEmpty(psw)){
 					Toast.makeText(LoginActivity.this, "用户名或密码不能为空", 0).show();
 				}else{
