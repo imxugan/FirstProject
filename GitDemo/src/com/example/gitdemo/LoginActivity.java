@@ -113,7 +113,7 @@ public class LoginActivity extends BaseActivity{
 						startActivity(new Intent(LoginActivity.this,MainActivity.class));
 						finish();
 					}else{
-						Toast.makeText(LoginActivity.this, "用户名或密码错误,正确的用户名为123，密码是123456", 0).show();
+						Toast.makeText(LoginActivity.this, "用户名或密码错误,正确的用户名为123，密码是123456", Toast.LENGTH_SHORT).show();
 					}
 				}
 				
