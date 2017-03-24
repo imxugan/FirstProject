@@ -16,7 +16,7 @@
         android:id="@+id/btn_sax"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="sax"/>
+        android:text="sax(不常用,了解)"/>
     
  	<Button 
         android:onClick="manage"

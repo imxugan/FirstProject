@@ -175,9 +175,9 @@ public class MainActivity extends Activity {
 	}
 
 	private void callBackTest() {
-		//现在我们来总结下满足回调的两个基本条件：
-		//1.Class A调用Class B中的X方法
-		//2.ClassB中X方法执行的过程中调用Class A中的Y方法完成回调
+//		现在我们来总结下满足回调的两个基本条件：
+//		1.Class A调用Class B中的X方法
+//		2.ClassB中X方法执行的过程中调用Class A中的Y方法完成回调
 		//创建一个员工
 		Employee employee = new Employee();
 		//创建一个经理

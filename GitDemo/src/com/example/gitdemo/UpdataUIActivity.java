@@ -51,7 +51,6 @@ public class UpdataUIActivity extends BaseActivity{
 					mHandler.sendMessage(msg);
 				};
 			}.start();
-			
 			break;
 		case R.id.btn_asytask:
 			new MyAsynctask().execute();

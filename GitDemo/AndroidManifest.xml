@@ -20,6 +20,13 @@
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <!-- 联网权限 -->
 <uses-permission android:name="android.permission.INTERNET"/>
+
+
+<instrumentation 
+    android:name="android.test.InstrumentationTestRunner"
+    android:targetPackage="com.example.gitdemo">
+</instrumentation>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -65,6 +72,8 @@
         <service android:name="com.example.gitdemo.service.MyForegroundService"></service>
         <service android:name="com.example.gitdemo.service.MyIntentService"></service>
         <service android:name="com.example.gitdemo.service.MyLongRunningService"></service>
+        
+        <uses-library android:name="android.test.runner"/>
     </application>
 
 </manifest>
