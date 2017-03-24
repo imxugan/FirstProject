@@ -2,6 +2,7 @@ package com.example.gitdemo.test;
 
 import com.example.gitdemo.LoginActivity;
 import com.example.gitdemo.controller.ActivityController;
+import com.example.gitdemo.util.LogUtil;
 
 import android.test.AndroidTestCase;
 
@@ -20,6 +21,7 @@ public class ActivityControllerTest extends AndroidTestCase{
 	}
 	
 	public void testAddActivity(){
+		LogUtil.i("ii", "test LogUtil");
 		assertEquals(0, ActivityController.activityMap.size());
 		LoginActivity logAc = new LoginActivity();
 		ActivityController.addActivity(logAc);
